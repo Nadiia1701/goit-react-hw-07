@@ -30,14 +30,14 @@ const contactsSlice = createSlice({
             .addCase(addContact.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.items = [...state.items, action.payload];
+                state.items = [...state.items, action.payload];  // чому не працює state.items.push(action.payload);
             })
             .addCase(addContact.rejected, handleRejected)
             .addCase(deleteContact.pending, handlePending)
             .addCase(deleteContact.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.items = state.items.filter(contact => contact.id !== action.payload.id);
+                state.items = state.items.filter(contact => contact.id !== action.payload.id);  // чому не працює const index = state.items.findIndex((item) => item.id === action.payload.id); state.items.splice(index, 1);
             })
             .addCase(deleteContact.rejected, handleRejected)
     }
